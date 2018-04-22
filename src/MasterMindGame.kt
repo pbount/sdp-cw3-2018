@@ -46,9 +46,31 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
                 println(msgCentre.secretCode(code))
             }
 
+
+            /* Compare user input to code and provide feedback */
+            val result = validator.evaluateGuess(code, input)
+            when(result.first) {
+                true -> {
+                   //success
+                    restartGame()
+                }
+                else -> {
+                    when(numberOfTriesLeft) {
+                        0 -> {
+                            //fail
+                            restartGame()
+                        }
+                        else -> {
+                            //fail show results
+                            //try again
+                            loop(numberOfTriesLeft-1,scanner.scan())
+                        }
+                    }
+                }
+            }
+
         }
-
-
+        
         loop(numberOfTries-1, firstInp)
 
     }
