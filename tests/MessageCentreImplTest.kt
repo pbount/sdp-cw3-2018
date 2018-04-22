@@ -59,4 +59,21 @@ class MessageCentreImplTest {
         assertFalse(res.isEmpty())
         assertFalse(randomText == res)
     }
+
+    @Test
+    fun instructionsTestSuccess(){
+        res = messageCentre.instructions()
+        assertTrue(res.isNotEmpty())
+        assertTrue(res.startsWith("\nWhat is your next guess?\n"))
+        assertTrue(res.endsWith("Enter guess: "))
+    }
+
+
+    @Test
+    fun instructionsTestFailure(){
+        res = messageCentre.instructions()
+        assertFalse(res.isEmpty())
+        assertFalse(res == randomText)
+    }
+
 }
