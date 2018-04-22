@@ -93,4 +93,18 @@ class MessageCentreImplTest {
         }
     }
 
+    @Test
+    fun anotherGoTestSuccess(){
+        res = messageCentre.anotherGo()
+        assertTrue(res.isNotEmpty())
+        assertTrue(res == "Enter Y for another game or anything else to quit: ")
+    }
+
+    @Test
+    fun anotherGoTestFail(){
+        res = messageCentre.anotherGo()
+        assertFalse(res.isEmpty())
+        assertFalse(res == randomText)
+    }
+
 }
