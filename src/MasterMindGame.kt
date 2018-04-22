@@ -51,18 +51,20 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
             val result = validator.evaluateGuess(code, input)
             when(result.first) {
                 true -> {
-                   //success
+                    println(msgCentre.success())
                     restartGame()
                 }
                 else -> {
                     when(numberOfTriesLeft) {
                         0 -> {
-                            //fail
+                            println(msgCentre.fail())
                             restartGame()
                         }
                         else -> {
-                            //fail show results
-                            //try again
+                            val resultMsg = msgCentre.results(input,result.second)
+                            println(resultMsg)
+                            println(msgCentre.guessesLeft(numberOfTriesLeft))
+                            print(msgCentre.instructions())
                             loop(numberOfTriesLeft-1,scanner.scan())
                         }
                     }
@@ -70,7 +72,7 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
             }
 
         }
-        
+
         loop(numberOfTries-1, firstInp)
 
     }
