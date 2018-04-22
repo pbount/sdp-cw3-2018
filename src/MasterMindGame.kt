@@ -6,12 +6,14 @@
 class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner, private val msgCentre: MessageCentre,
                      private val numberOfTries: Int,private val validator: Validator
                      , private val colorCodeGenerator: ColorCodeGenerator, private val complexity: Int):
- GameAbstractImpl(showCode){
+        GameAbstractImpl(showCode) {
 
     /* The secret code to be cracked by the user */
     private var code = colorCodeGenerator.colorCode(complexity)
 
-
+    /**
+     * Executes the game.
+     */
     override fun runGames() {
 
         /* Welcome message */
@@ -26,14 +28,11 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
         println(msgCentre.guessesLeft(numberOfTries))
         print(msgCentre.instructions())
 
-
         /* First user input */
         val firstInp = scanner.scan()
 
-        /*Loop until user is left with no more tries or
-         successfully guess the secret code*/
+        /* Loop until user is left with no more tries */
         fun loop(numberOfTriesLeft: Int, input: String) {
-
 
             /* User input should be following game rules */
             if(!validator.validate(input)) {
@@ -45,7 +44,6 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
             if(showCode) {
                 println(msgCentre.secretCode(code))
             }
-
 
             /* Compare user input to code and provide feedback */
             val result = validator.evaluateGuess(code, input)
@@ -59,6 +57,7 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
                         0 -> {
                             println(msgCentre.fail())
                             restartGame()
+
                         }
                         else -> {
                             val resultMsg = msgCentre.results(input,result.second)
@@ -70,17 +69,13 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
                     }
                 }
             }
-
         }
 
         loop(numberOfTries-1, firstInp)
-
     }
 
-
-
     /**
-     * Executes the game.
+     * Option to restart the game
      */
     override fun restartGame() {
         println(msgCentre.anotherGo())
@@ -90,5 +85,4 @@ class MasterMindGame(private val showCode: Boolean, private val scanner: Scanner
             runGames()
         }
     }
-
 }
