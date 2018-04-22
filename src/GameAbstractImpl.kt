@@ -1,0 +1,1 @@
+abstract class GameAbstractImpl(private val showCode:Boolean): Game
