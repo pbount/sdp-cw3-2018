@@ -20,8 +20,34 @@ class ValidatorImpl(validInput: Array<Peg>): Validator {
      * Compares the input against the secret code and returns a Pair of a
      * Boolean indicating whether the input and code are the same and a Pair of
      * the number of Black and White pegs (in that order).
-     * NOT COMPLETE/
+     */
     override fun evaluateGuess(secretKey: String, guess: String) : Pair<Boolean, Pair<Int, Int>> {
-        return Pair(false, Pair(1, 1))
+        var black = 0
+        var white = 0
+        var stringToCheck = guess
+        val matchArray = BooleanArray(secretKey.length)
+
+
+        for (i in 0 until secretKey.length) {
+
+            if (guess[i] == secretKey[i]) {
+                black++
+                matchArray[i] = true
+            } else {
+
+                for (j in 0 until stringToCheck.length) {
+
+                    if (stringToCheck[j] == secretKey[i] && !matchArray[i] && j!=i) {
+
+                        matchArray[i] = true
+                        white++
+                        stringToCheck = stringToCheck.replace(stringToCheck[j].toString(),"")
+
+                        break
+                    }
+                }
+            }
+        }
+        return Pair(black == secretKey.length, Pair(black, white))
     }
 }
