@@ -107,4 +107,59 @@ class MessageCentreImplTest {
         assertFalse(res == randomText)
     }
 
+    @Test
+    fun resultsNotAnEmptyStringTestSuccess(){
+        res = messageCentre.results("BOPY", Pair(3,1))
+        assertTrue(res.isNotEmpty())
+    }
+
+    @Test
+    fun resultsThreeBlackOneWhiteTestSuccess(){
+        val inp = "BOPY"
+        res = messageCentre.results(inp, Pair(3,1))
+        assertTrue("BOPY Result: Black Black Black White" == res.trim() )
+
+    }
+
+    @Test
+    fun resultsOneBlackThreeWhiteTestSuccess(){
+        val inp = "BOPY"
+        res = messageCentre.results(inp, Pair(1,3))
+        assertTrue("BOPY Result: Black White White White" == res.trim())
+    }
+
+    @Test
+    fun resultsNoPegsTestSuccess(){
+        val inp = "BOPY"
+        res = messageCentre.results(inp, Pair(0,0))
+        assertTrue("$inp Result: No Pegs"== res.trim())
+    }
+
+    @Test
+    fun resultsMoreThanInputTestSuccess(){
+        var inp = "BOPY"
+        res = messageCentre.results(inp, Pair(1,0))
+        inp = "BOBB"
+        res = messageCentre.results(inp, Pair(1,1))
+        val stb = StringBuilder()
+        stb.append("\nBOPY Result: Black ")
+        stb.append("\nBOBB Result: Black White")
+        assertTrue(res.trim() == stb.toString().trim())
+
+    }
+
+    @Test
+    fun resultsTestFailure() {
+        var inp = "BOPY"
+        res = messageCentre.results(inp, Pair(0,0))
+        assertFalse(res.isEmpty())
+    }
+
+    @Test
+    fun resultsRandomTextTestFailure() {
+        var inp = "BOPY"
+        res = messageCentre.results(inp, Pair(0,0))
+        assertFalse(res == randomText)
+    }
+
 }
