@@ -6,7 +6,7 @@ object PegFactory {
 
     fun getPegs(pegColours: Array<PegColor>): Array<Peg> {
 
-        return arrayOf(PegImpl(PegColor.BLUE))
+        return Array(pegColours.size, {i -> PegImpl(pegColours[i])})
     }
 }
 
