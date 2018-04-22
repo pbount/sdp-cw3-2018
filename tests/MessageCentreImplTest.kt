@@ -5,11 +5,22 @@ import org.junit.Assert.*
 
 class MessageCentreImplTest {
 
+    lateinit var messageCentre: MessageCentre
+    lateinit var res: String
+    lateinit var randomText: String
+
     @Before
-    fun setUp() {
+    fun beforeTest(){
+        messageCentre = MessageCentreImpl(StringBuilder())
+        randomText = "Random text"
     }
 
     @Test
-    fun welcome() {
+    fun welcomeTestSuccess() {
+        res = messageCentre.welcome()
+        assertTrue(res.isNotEmpty())
+        assertTrue(res.startsWith("""Welcome to Mastermind""".trimIndent()))
+        assertTrue(res.endsWith("Generating secret code ...."))
+
     }
 }
