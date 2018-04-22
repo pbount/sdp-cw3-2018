@@ -28,9 +28,9 @@ class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCent
 
     override fun fail(): String = "You did not solve the puzzle. Too bad."
 
-    override fun instructions(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun instructions(): String = "\nWhat is your next guess?\n" +
+            "Type in the characters for your guess and press enter.\n" +
+            "Enter guess: "
 
     override fun guessesLeft(n: Int): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
