@@ -34,9 +34,7 @@ class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCent
 
     override fun guessesLeft(n: Int): String = "\nYou have $n guesses left"
 
-    override fun anotherGo(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun anotherGo(): String = "Enter Y for another game or anything else to quit: "
 
     override fun results(inp: String, result: Pair<Int, Int>): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
