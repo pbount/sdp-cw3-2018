@@ -2,6 +2,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.*
 
 class ColorCodeGeneratorImplTest {
 
@@ -29,6 +30,26 @@ class ColorCodeGeneratorImplTest {
             assertTrue(res.length == 4)
             res.forEach { assertTrue(listOfAcceptableValues.contains(it.toString())) }
         }
+    }
 
+    @Test
+    fun testBoundsOFRandom() {
+        var res0 = 0
+        var res1 = 0
+        var res2 = 0
+        for(i in 0..10000) {
+            val res = Random().nextInt(3)
+
+            if (res == 0) {
+                res0 += 1
+            }
+            if (res == 1) {
+                res1 += 1
+            }
+            if (res == 2) {
+                res2 += 1
+            }
+            assertTrue(res in 0..3)
+        }
     }
 }
