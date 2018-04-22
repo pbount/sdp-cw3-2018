@@ -32,9 +32,7 @@ class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCent
             "Type in the characters for your guess and press enter.\n" +
             "Enter guess: "
 
-    override fun guessesLeft(n: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun guessesLeft(n: Int): String = "\nYou have $n guesses left"
 
     override fun anotherGo(): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
