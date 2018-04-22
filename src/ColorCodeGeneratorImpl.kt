@@ -13,6 +13,15 @@ class ColorCodeGeneratorImpl(private val arrayOfPegs: Array<Peg>): ColorCodeGene
      * Receives a number n and generates a code with size n.
      */
     override fun colorCode (n: Int) : String {
-        TODO()
+        tailrec fun loop(resultSoFar: String, num: Int): String {
+
+            return when(num) {
+                0 -> resultSoFar
+                else -> loop(resultSoFar + arrayOfPegs[Random().nextInt(arrayOfPegs.size)].color(), num-1)
+            }
+
+        }
+
+        return loop("", n)
     }
 }
