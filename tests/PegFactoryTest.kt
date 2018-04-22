@@ -23,4 +23,11 @@ class PegFactoryTest {
     fun getPegsSameSizeTestSuccess() {
         assertTrue(factory.getPegs(arrayOfPegColor).size == arrayOfPegColor.size)
     }
+
+    @Test
+    fun getPegsObjectTypeTestSuccess() {
+        assertTrue(factory.getPegs(arrayOfPegColor).all {
+            it is Peg
+        })
+    }
 }
