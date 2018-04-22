@@ -36,12 +36,14 @@ class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCent
 
     override fun anotherGo(): String = "Enter Y for another game or anything else to quit: "
 
-    override fun results(inp: String, result: Pair<Int, Int>): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun results(inp: String,result: Pair<Int, Int>): String {
+
+        return when{
+            result.first == 0 && result.second == 0 -> stringBuilder.append("\n$inp Result: No Pegs").toString()
+            else ->stringBuilder.append("\n$inp Result: " + "Black ".repeat(result.first) + "White ".repeat(result.second) ).toString()
+        }
     }
 
-    override fun secretCode(secretCode: String): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun secretCode(secretCode: String): String = "The secret code is $secretCode"
 
 }
