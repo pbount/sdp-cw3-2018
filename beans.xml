@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+    <bean id="masterMindGame" class="MasterMindGame">
+        <constructor-arg index="0" value="true"/>
+        <constructor-arg index="1" ref="scanner"/>
+        <constructor-arg index="2" ref="messageCentre"/>
+        <constructor-arg index="3" value="12"/>
+        <constructor-arg index="4" ref="validator"/>
+        <constructor-arg index="5" ref="colorCodeGenerator"/>
+        <constructor-arg index="6" value="4"/>
+
+    </bean>
+
+
+    <bean id="validator" class="ValidatorImpl">
+        <constructor-arg value="#{pegFactory.getPegs(arrayOfPegsColors)}"/>
+    </bean>
+    <bean id="colorCodeGenerator" class="ColorCodeGeneratorImpl">
+        <constructor-arg value="#{pegFactory.getPegs(arrayOfPegsColors)}"/>
+    </bean>
+
+    <bean id="pegFactory" class="PegFactory"/>
+
+    <util:constant id="blue" static-field="PegColor.BLUE" />
+    <util:constant id="green" static-field="PegColor.GREEN" />
+    <util:constant id="orange" static-field="PegColor.ORANGE" />
+    <util:constant id="purple" static-field="PegColor.PURPLE" />
+    <util:constant id="red" static-field="PegColor.RED" />
+    <util:constant id="yellow" static-field="PegColor.YELLOW" />
+
+
+
+
+    <util:list id="arrayOfPegsColors"  list-class="java.util.ArrayList">
+        <ref bean="blue"/>
+        <ref bean="green"/>
+        <ref bean="orange"/>
+        <ref bean="purple"/>
+        <ref bean="red"/>
+        <ref bean="yellow"/>
+    </util:list>
+
+
+    <bean id="messageCentre" class="MessageCentreImpl"/>
+    <bean id="scanner" class="ScannerImpl">
+        <constructor-arg index="0" value="4"/>
+    </bean>
+
+</beans>

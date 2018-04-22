@@ -11,7 +11,7 @@ class MessageCentreImplTest {
 
     @Before
     fun beforeTest(){
-        messageCentre = MessageCentreImpl(StringBuilder())
+        messageCentre = MessageCentreImpl()
         randomText = "Random text"
     }
 

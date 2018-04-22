@@ -1,4 +1,6 @@
-class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCentre {
+class MessageCentreImpl : MessageCentre {
+    override val stringBuilder: StringBuilder = StringBuilder()
+
     override fun welcome(): String {
         return """
             Welcome to Mastermind.
@@ -34,6 +36,7 @@ class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCent
 
     override fun guessesLeft(n: Int): String = "\nYou have $n guesses left"
 
+
     override fun anotherGo(): String = "Enter Y for another game or anything else to quit: "
 
     override fun results(inp: String,result: Pair<Int, Int>): String {
@@ -45,5 +48,5 @@ class MessageCentreImpl(override val stringBuilder: StringBuilder) : MessageCent
     }
 
     override fun secretCode(secretCode: String): String = "The secret code is $secretCode"
-
 }
+
