@@ -30,4 +30,23 @@ class PegFactoryTest {
             it is Peg
         })
     }
+
+    @Test
+    fun getPegsTestFail(){
+        assertFalse(factory.getPegs(arrayOfPegColor).isEmpty())
+    }
+
+
+    @Test
+    fun getPegsSizeTestFail() {
+        val arr = arrayOf(PegColor.YELLOW,PegColor.BLUE, PegColor.GREEN)
+        assertFalse(factory.getPegs(arr).size == arrayOfPegColor.size)
+    }
+
+    @Test
+    fun getPegsObjectTypeFail() {
+        assertFalse(factory.getPegs(arrayOfPegColor).all {
+            it !is Peg
+        })
+    }
 }
