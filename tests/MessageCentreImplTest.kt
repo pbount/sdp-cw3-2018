@@ -76,4 +76,21 @@ class MessageCentreImplTest {
         assertFalse(res == randomText)
     }
 
+    @Test
+    fun guessesLeftTestSuccess() {
+
+        for(i in -10..1000){
+            assertTrue("\nYou have $i guesses left" == messageCentre.guessesLeft(i))
+        }
+    }
+
+    @Test
+    fun guessesLeftTestFailure(){
+        res = messageCentre.guessesLeft(5)
+
+        for(i in -1000 until 5){
+            assertFalse("\nYou have $i guesses left" == res)
+        }
+    }
+
 }
