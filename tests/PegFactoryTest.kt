@@ -1,4 +1,4 @@
-import org.junit.Assert
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -16,6 +16,11 @@ class PegFactoryTest {
 
     @Test
     fun getPegsNotEmptyTestSuccess(){
-        Assert.assertTrue(factory.getPegs(arrayOfPegColor).isNotEmpty())
+        assertTrue(factory.getPegs(arrayOfPegColor).isNotEmpty())
+    }
+
+    @Test
+    fun getPegsSameSizeTestSuccess() {
+        assertTrue(factory.getPegs(arrayOfPegColor).size == arrayOfPegColor.size)
     }
 }
